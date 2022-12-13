@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmp3bwt8lvn1w"]
+
+[ext_resource type="Texture2D" uid="uid://dg0xkyihevwyt" path="res://World/Bush.png" id="1_2iws5"]
+[ext_resource type="Texture2D" uid="uid://bvhm7tmqm14jx" path="res://Player/Player.png" id="2_bs5nx"]
+[ext_resource type="Script" path="res://Player/Player.gd" id="2_svx77"]
+[ext_resource type="Texture2D" uid="uid://b000mc8ibubxt" path="res://UI/HeartUIFull.png" id="4_6apy5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5adns"]
+radius = 3.0
+height = 10.0
+
+[node name="World" type="Node2D"]
+texture_filter = 1
+
+[node name="Bush" type="Sprite2D" parent="."]
+position = Vector2(27, 31)
+texture = ExtResource("1_2iws5")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(149, 56)
+script = ExtResource("2_svx77")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_bs5nx")
+hframes = 60
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-1, 8)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_5adns")
+
+[node name="HeartUiFull" type="Sprite2D" parent="."]
+position = Vector2(84, 96)
+texture = ExtResource("4_6apy5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(0, 0, 96, 72, 48, 112, 80, 152, 128, 120, 168, 168, 208, 136, 240, 152, 248, 128, 200, 112, 272, 88, 272, 64, 248, 16, 272, 0, 296, 0, 296, 176, 8, 176)
