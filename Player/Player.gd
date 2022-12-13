@@ -5,6 +5,9 @@ const FRICTION = 500
 const MAX_SPEED = 100
 
 var pVelocity = Vector2.ZERO
+
+@onready var animationPlayer = $AnimationPlayer;
+
 # delta is time last frame took. Also, this is called every tick.
 func _physics_process(delta):
 	
@@ -14,9 +17,11 @@ func _physics_process(delta):
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO:
+		animationPlayer.play("Run Right")
 		pVelocity = pVelocity.move_toward(input_vector*MAX_SPEED, ACCELERATION*delta)
 		pVelocity = pVelocity.limit_length(MAX_SPEED)
 	else:
+		animationPlayer.play("IdleRight")
 		pVelocity = pVelocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
 	velocity = pVelocity;
